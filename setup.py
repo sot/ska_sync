@@ -11,5 +11,5 @@ setup(name='ska_sync',
       license='BSD',
       zip_safe=False,
       packages=find_packages(),
-      package_data={'ska_sync': ['ska_sync.cfg']},
+      package_data={'ska_sync': ['ska_sync_config']},
       )
