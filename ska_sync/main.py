@@ -43,18 +43,11 @@ def install(opt):
     in_path = PACKAGE_CONFIG_PATH
     out_path = SKA_CONFIG_PATH
     if os.path.exists(out_path) and not opt.force:
-        print('ERROR: ska sync config file {} already exists.  Use --force option to overwrite.')
+        print('ERROR: ska sync config file {} already exists.  Use --force option to overwrite.'
+              .format(out_path))
+        return
 
-    with open(in_path, 'r') as fh:
-        config_text = fh.read()
-
-    # Change hardwired default comment
-    if opt.user:
-        config_text = re.sub(r'# user: name', 'user: {}'.format(opt.user), config_text)
-
-    with open(out_path, 'w') as fh:
-        fh.write(config_text)
-
+    shutil.copy(in_path, out_path)
     print('Wrote ska sync config file to {}'.format(out_path))
 
 
