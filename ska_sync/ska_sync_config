@@ -16,33 +16,26 @@ host: kadi.cfa.harvard.edu
 # are relative to $SKA/data/{package}, e.g. $SKA/data/kadi/cmds.h5
 ################################################################################
 file_sync:
-  kadi:  # ~130 Mb
+  kadi:
     - cmds.h5
     - cmds.pkl
     - events.db3
 
-  Ska.tdb: # 16 to 112 Mb (7 versions of TDB @ 16 Mb each)
-#    - p004
-#    - p006
-#    - p007
-#    - p008
-#    - p009
-#    - p010
-#    - p011
-#    - p012
-#    - p013
+  Ska.tdb:
     - p014
 
   cmd_states:
     - cmd_states.h5
     - cmd_states.db3
 
-# AGASC star catalog data.  Uncomment the three lines below if you
-# need access to the AGASC.  Just delete the single # character on each
-# line as spacing is important.  Note that is about a gigabyte.
-#  agasc:  # ~1.2 Gb
-#    - miniagasc.h5
-#    - ra_dec.npy
+  # AGASC star catalog data.  Note that this is about a gigabyte.
+  agasc:  # ~1.2 Gb
+    - miniagasc.h5
+
+  # Mica data needed for proseco acq star selection
+  mica:
+    - archive/aca_dark
+    - archive/starcheck/starcheck.db3
 
 ################################################################################
 # Ska telemetry archive MSIDs or content types to sync
