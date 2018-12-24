@@ -31,6 +31,7 @@ file_sync:
   # AGASC star catalog data.  Note that this is about a gigabyte.
   agasc:  # ~2 Gb
     - miniagasc.h5
+    - miniagasc_1p7.h5
     - proseco_agasc_1p7.h5
 
   # Mica data needed for proseco acq star selection
