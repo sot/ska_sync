@@ -8,15 +8,14 @@ Arguments
 =========
 """
 import os
-import re
 
 import yaml
 
-from .version import __version__
 from ska_path import ska_path
 
 PACKAGE_CONFIG_PATH = os.path.join(os.path.dirname(__file__), 'ska_sync_config')
 SKA_CONFIG_PATH = os.path.join(ska_path(), 'ska_sync_config')  # `None` if path doesn't exist
+
 
 def get_opt():
     import argparse
@@ -65,10 +64,9 @@ def file_sync(packages, user, host):
     with open(sync_files_path, 'w') as fh:
         fh.writelines(files)
 
-    rsync_cmd = ()
     print('\n'
           'COPY and PASTE the following at your terminal command line prompt:\n\n'
-          '  rsync -arzv --progress --size-only --files-from="{sync_files_path}" \\\n'
+          '  rsync -arzv --progress --files-from="{sync_files_path}" \\\n'
           '    {user}@{host}:/proj/sot/ska/ "{ska_path}/"\n'
           .format(user=user, host=host, ska_path=ska_path(), sync_files_path=sync_files_path))
 
@@ -87,3 +85,7 @@ def main():
     user = opt.user or config.get('user') or os.environ['USER']
 
     file_sync(config['file_sync'], user, config['host'])
+
+
+if __name__ == '__main__':
+    main()

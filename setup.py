@@ -4,7 +4,7 @@ from ska_sync.version import __version__
 
 setup(name='ska_sync',
       author='Tom Aldcroft',
-      description='Synchronize data files for Ska runtime environment',
+      description='Synchronize data files for Ska3 runtime environment',
       author_email='aldcroft@head.cfa.harvard.edu',
       entry_points={'console_scripts': ['ska_sync = ska_sync.main:main']},
       version=__version__,
