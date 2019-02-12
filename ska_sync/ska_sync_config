@@ -33,6 +33,7 @@ file_sync:
     - miniagasc.h5
     - miniagasc_1p7.h5
     - proseco_agasc_1p7.h5
+    - agasc_supplement.h5
 
   # Mica data needed for proseco acq star selection
   mica:
