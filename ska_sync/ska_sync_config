@@ -50,6 +50,31 @@ file_sync:
   acq_stats:
     - acq_stats.h5
 
+  # Minimal set of eng-archive files for doing ACA and ACIS load review
+  eng_archive:
+    - data/orbitephem0/colnames.pickle
+    - data/orbitephem0/archfiles.db3
+    - data/orbitephem0/TIME.h5
+    - data/orbitephem0/ORBITEPHEM0_X.h5
+    - data/orbitephem0/ORBITEPHEM0_Y.h5
+    - data/orbitephem0/ORBITEPHEM0_Z.h5
+    - data/dp_pcad4/colnames.pickle
+    - data/dp_pcad4/5min/DP_ROLL.h5
+    - data/dp_pcad4/5min/DP_PITCH.h5
+    - data/pcad5eng/5min/colnames.pickle
+    - data/pcad5eng/5min/AACCCDPT.h5
+    - data/acisdeahk/colnames.pickle
+    - data/acisdeahk/5min/FPTEMP_11.h5
+    - data/acis2eng/colnames.pickle
+    - data/acis2eng/5min/1DPAMZT.h5
+    - data/acis2eng/5min/1DEAMZT.h5
+    - data/acis2eng/5min/1PDEAAT.h5
+    - data/acis2eng/5min/1DAHTBON.h5
+    - data/simcoor/colnames.pickle
+    - data/simcoor/5min/SIM_Z.h5
+    - data/dp_acispow128/colnames.pickle
+    - data/dp_acispow128/5min/DP_DPA_POWER.h5
+
 ################################################################################
 # Ska telemetry archive MSIDs or content types to sync
 #
