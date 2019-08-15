@@ -63,8 +63,10 @@ file_sync:
     - data/dp_pcad4/5min/DP_PITCH.h5
     - data/pcad5eng/5min/colnames.pickle
     - data/pcad5eng/5min/AACCCDPT.h5
+    - data/pcad5eng/TIME.h5
     - data/acisdeahk/colnames.pickle
     - data/acisdeahk/5min/FPTEMP_11.h5
+    - data/acisdeahk/TIME.h5
     - data/acis2eng/colnames.pickle
     - data/acis2eng/5min/1DPAMZT.h5
     - data/acis2eng/5min/1DEAMZT.h5
