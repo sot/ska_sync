@@ -50,6 +50,10 @@ file_sync:
   acq_stats:
     - acq_stats.h5
 
+  # ska_testr test data
+  ska_testr:
+    - test_loads
+
   # Minimal set of eng-archive files for doing ACA and ACIS load review
   eng_archive:
     - data/orbitephem0/colnames.pickle
