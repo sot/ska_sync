@@ -76,6 +76,10 @@ file_sync:
     - data/simcoor/5min/SIM_Z.h5
     - data/dp_acispow128/colnames.pickle
     - data/dp_acispow128/5min/DP_DPA_POWER.h5
+    - data/pcad3eng/5min/AOECLIPS.h5
+    - data/pcad3eng/colnames.pickle
+    - data/prop1eng/5min/PFTANK2T.h5
+    - data/prop1eng/colnames.pickle
 
 ################################################################################
 # Ska telemetry archive MSIDs or content types to sync
