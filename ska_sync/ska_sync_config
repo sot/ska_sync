@@ -39,13 +39,13 @@ file_sync:
   mica:
     - archive/aca_dark
     - archive/starcheck/starcheck.db3
-   
+
   # ACA guide star statistics
   # http://cxc.cfa.harvard.edu/mta/ASPECT/tool_doc/mica/guide_stats.html
   guide_stats:
     - guide_stats.h5
-    
-  # ACA acquisition star statistics 
+
+  # ACA acquisition star statistics
   # http://cxc.cfa.harvard.edu/mta/ASPECT/tool_doc/mica/acq_stats.html
   acq_stats:
     - acq_stats.h5
