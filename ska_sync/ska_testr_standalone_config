@@ -1,0 +1,104 @@
+################################################################################
+#
+# Configure syncing of package data for standalone Ska
+#
+# This config file has a set of eng_archive files supplied that
+#  work to run ACA and ACIS load checkers in the context of ska_testr.
+################################################################################
+
+# Host machine to supply Ska data (could also be chimchim but kadi works
+# from OCC VPN just as well).
+host: kady.cfa.harvard.edu
+
+# Remote host user name.  Default is local user name.
+# user: name
+
+################################################################################
+# Data files to sync from host listed by package.  The paths under each package
+# are relative to $SKA/data/{package}, e.g. $SKA/data/kadi/cmds.h5
+################################################################################
+file_sync:
+  kadi:
+    - cmds.h5
+    - cmds.pkl
+    - events.db3
+    - events3.db3
+
+  Ska.tdb:
+    - p014
+
+  cmd_states:
+    - cmd_states.h5
+    - cmd_states.db3
+
+  # AGASC star catalog data.  Note that this is about a gigabyte.
+  agasc:  # ~2 Gb
+    - miniagasc.h5
+    - miniagasc_1p7.h5
+    - proseco_agasc_1p7.h5
+    - agasc_supplement.h5
+
+  # Mica data needed for proseco acq star selection
+  mica:
+    - archive/aca_dark
+    - archive/starcheck/starcheck.db3
+
+  # ACA guide star statistics
+  # http://cxc.cfa.harvard.edu/mta/ASPECT/tool_doc/mica/guide_stats.html
+  guide_stats:
+    - guide_stats.h5
+
+  # ACA acquisition star statistics
+  # http://cxc.cfa.harvard.edu/mta/ASPECT/tool_doc/mica/acq_stats.html
+  acq_stats:
+    - acq_stats.h5
+
+  # ska_testr test data
+  ska_testr:
+    - test_loads
+
+  # Minimal set of eng-archive files for doing ACA and ACIS load review
+  eng_archive:
+    - data/orbitephem0/colnames.pickle
+    - data/orbitephem0/archfiles.db3
+    - data/orbitephem0/TIME.h5
+    - data/orbitephem0/ORBITEPHEM0_X.h5
+    - data/orbitephem0/ORBITEPHEM0_Y.h5
+    - data/orbitephem0/ORBITEPHEM0_Z.h5
+    - data/dp_pcad4/colnames.pickle
+    - data/dp_pcad4/5min/DP_ROLL.h5
+    - data/dp_pcad4/5min/DP_PITCH.h5
+    - data/pcad5eng/colnames.pickle
+    - data/pcad5eng/5min/AACCCDPT.h5
+    - data/pcad5eng/TIME.h5
+    - data/acisdeahk/colnames.pickle
+    - data/acisdeahk/5min/FPTEMP_11.h5
+    - data/acisdeahk/TIME.h5
+    - data/acis2eng/colnames.pickle
+    - data/acis2eng/5min/1DPAMZT.h5
+    - data/acis2eng/5min/1DEAMZT.h5
+    - data/acis2eng/5min/1PDEAAT.h5
+    - data/acis2eng/5min/1DAHTBON.h5
+    - data/simcoor/colnames.pickle
+    - data/simcoor/5min/SIM_Z.h5
+    - data/dp_acispow128/colnames.pickle
+    - data/dp_acispow128/5min/DP_DPA_POWER.h5
+    - data/pcad3eng/5min/AOECLIPS.h5
+    - data/pcad3eng/colnames.pickle
+    - data/prop1eng/5min/PFTANK2T.h5
+    - data/prop1eng/colnames.pickle
+
+################################################################################
+# Ska telemetry archive MSIDs or content types to sync
+#
+# NOTE: currently not supported.
+################################################################################
+eng_archive:
+  full:
+    - tephin
+
+  daily:
+    - '*'  # sync everything in the daily archives
+
+  5min:
+    - 'thm?eng'
