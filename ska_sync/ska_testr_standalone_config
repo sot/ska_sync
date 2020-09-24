@@ -3,7 +3,7 @@
 # Configure syncing of package data for standalone Ska
 #
 # This config file has a set of eng_archive files supplied that
-#  work to run ACA and ACIS load checkers. 
+#  work to run ACA and ACIS load checkers in the context of ska_testr.
 ################################################################################
 
 # Host machine to supply Ska data (could also be chimchim but kadi works
