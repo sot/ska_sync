@@ -54,3 +54,6 @@ file_sync:
   # ska_testr test data
   ska_testr:
     - test_loads
+
+  chandra_models:
+    - .
