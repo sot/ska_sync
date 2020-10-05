@@ -8,6 +8,7 @@ Arguments
 =========
 """
 import os
+import getpass
 
 import yaml
 
@@ -82,7 +83,7 @@ def main():
     print('Loaded config from {}'.format(config_path))
 
     # Remote user name
-    user = opt.user or config.get('user') or os.environ['USER']
+    user = opt.user or config.get('user') or getpass.getuser()
 
     file_sync(config['file_sync'], user, config['host'])
 
