@@ -11,6 +11,7 @@ import os
 import getpass
 import time
 import textwrap
+from pathlib import Path
 
 import yaml
 
@@ -39,6 +40,10 @@ def get_opt():
     parser.add_argument('--sync-mp',
                         action='store_true',
                         help='Sync mission planning files relevant to ACA for current year')
+
+    parser.add_argument('--fix-mp-links',
+                        action='store_true',
+                        help='Fix mission planning ofls symlinks')
 
     opt = parser.parse_args()
     return opt
@@ -82,6 +87,7 @@ def file_sync(packages, user, host, sync_mp=False):
         cmd = f"""\
               rsync -arzv --prune-empty-dirs \\
                 --include "*/" \\
+                --include "ofls" \\
                 --include="CR*.tlr" \\
                 --include="CR*.backstop" \\
                 --include="starcheck.txt" \\
@@ -103,12 +109,44 @@ def file_sync(packages, user, host, sync_mp=False):
                 {ska_path()}/data/mpcrit1/mplogs/{year}/"""
         cmd = textwrap.dedent(cmd)
         print(cmd)
+        print()
+        print('ska_sync --fix-mp-links')
+        print()
+
+
+def fix_mp_links():
+    """Fix SOT MP ofls -> oflsa link
+
+    SOT MP uses absolute links like::
+
+      APR0620/ofls -> /data/mpcrit1/mplogs/2020/APR0620/oflsa
+
+    There is no obvious reason to do this but there you go.
+    """
+    mp_dir = Path(ska_path()) / 'data' / 'mpcrit1' / 'mplogs'
+
+    # Oddly, mp_dir.glob('????/???????/ofls') does not return anything, so we
+    # need mp_dir.glob('????/???????/ofls*') and then filter results.
+    ofls_links = mp_dir.glob('????/???????/ofls*')
+    for ofls_link in ofls_links:
+        if ofls_link.name != 'ofls':
+            continue
+        link = os.readlink(ofls_link)
+        if link.startswith('/data'):
+            link = Path(link)
+            print(f'Linking {ofls_link} -> {link.name}')
+            ofls_link.unlink()
+            ofls_link.symlink_to(link.name)
 
 
 def main():
     opt = get_opt()
     if opt.install:
         install(opt)
+        return
+
+    if opt.fix_mp_links:
+        fix_mp_links()
         return
 
     config_path = SKA_CONFIG_PATH or PACKAGE_CONFIG_PATH
