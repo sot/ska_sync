@@ -9,6 +9,8 @@ Arguments
 """
 import os
 import getpass
+import time
+import textwrap
 
 import yaml
 
@@ -34,6 +36,10 @@ def get_opt():
                         action='store_true',
                         help='Force overwrite of sync config file')
 
+    parser.add_argument('--sync-mp',
+                        action='store_true',
+                        help='Sync mission planning files relevant to ACA for current year')
+
     opt = parser.parse_args()
     return opt
 
@@ -51,7 +57,7 @@ def install(opt):
     print('Wrote ska sync config file to {}'.format(out_path))
 
 
-def file_sync(packages, user, host):
+def file_sync(packages, user, host, sync_mp=False):
     """
     Sync files for packages assuming location in $SKA/data/<package>/.
     """
@@ -67,9 +73,36 @@ def file_sync(packages, user, host):
 
     print('\n'
           'COPY and PASTE the following at your terminal command line prompt:\n\n'
-          '  rsync -arzv --progress --files-from="{sync_files_path}" \\\n'
-          '    {user}@{host}:/proj/sot/ska/ "{ska_path}/"\n'
+          'rsync -arzv --progress --files-from="{sync_files_path}" \\\n'
+          '  {user}@{host}:/proj/sot/ska/ "{ska_path}/"\n'
           .format(user=user, host=host, ska_path=ska_path(), sync_files_path=sync_files_path))
+
+    year = time.localtime().tm_year
+    if sync_mp:
+        cmd = f"""\
+              rsync -arzv --prune-empty-dirs \\
+                --include "*/" \\
+                --include="CR*.tlr" \\
+                --include="CR*.backstop" \\
+                --include="starcheck.txt" \\
+                --include="*.pkl.gz" \\
+                --include="mps/md*.dot" \\
+                --include="mps/or/*.or" \\
+                --include="mps/ode/characteristics/CHARACTERIS_*" \\
+                --include="mps/m*.sum" \\
+                --include="output/*_ManErr.txt" \\
+                --include="output/*_dynamical_offsets.txt" \\
+                --include="output/TEST_mechcheck.txt" \\
+                --include="History/DITHER.txt" \\
+                --include="History/FIDSEL.txt" \\
+                --include="History/RADMON.txt" \\
+                --include="History/SIMFOCUS.txt" \\
+                --include="History/SIMTRANS.txt" \\
+                --exclude="*" \\
+                {user}@{host}:/data/mpcrit1/mplogs/{year}/ \\
+                {ska_path()}/data/mpcrit1/mplogs/{year}/"""
+        cmd = textwrap.dedent(cmd)
+        print(cmd)
 
 
 def main():
@@ -85,7 +118,7 @@ def main():
     # Remote user name
     user = opt.user or config.get('user') or getpass.getuser()
 
-    file_sync(config['file_sync'], user, config['host'])
+    file_sync(config['file_sync'], user, config['host'], opt.sync_mp)
 
 
 if __name__ == '__main__':
