@@ -23,7 +23,8 @@ file_sync:
     - events3.db3
 
   Ska.tdb:
-    - p014
+    - p015
+    - cdb
 
   cmd_states:
     - cmd_states.h5
