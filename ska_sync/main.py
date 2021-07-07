@@ -99,6 +99,7 @@ def file_sync(packages, user, host, sync_mp=False):
                 --include="output/*_ManErr.txt" \\
                 --include="output/*_dynamical_offsets.txt" \\
                 --include="output/TEST_mechcheck.txt" \\
+                --include="History/ATTITUDE.txt" \\
                 --include="History/DITHER.txt" \\
                 --include="History/FIDSEL.txt" \\
                 --include="History/RADMON.txt" \\
