@@ -42,6 +42,7 @@ file_sync:
     - archive/aca_dark
     - archive/starcheck/starcheck.db3
     - archive/obspar/archfiles.db3
+    - archive/ocat_target_table.h5
 
   # ACA guide star statistics
   # http://cxc.cfa.harvard.edu/mta/ASPECT/tool_doc/mica/guide_stats.html
