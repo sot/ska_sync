@@ -26,8 +26,7 @@ file_sync:
 
   # Telemetry database, assuming fewer than 99 versions total
   Ska.tdb:
-    - p0??
-    - cdb
+    - .
 
   cmd_states:
     - cmd_states.h5
