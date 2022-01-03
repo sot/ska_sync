@@ -19,12 +19,14 @@ file_sync:
   kadi:
     - cmds.h5
     - cmds.pkl
+    - cmds2.h5
+    - cmds2.pkl
     - events.db3
     - events3.db3
 
+  # Telemetry database, assuming fewer than 99 versions total
   Ska.tdb:
-    - p015
-    - cdb
+    - .
 
   cmd_states:
     - cmd_states.h5
@@ -33,7 +35,6 @@ file_sync:
   # AGASC star catalog data.  Note that this is about a gigabyte.
   agasc:  # ~2 Gb
     - miniagasc.h5
-    - miniagasc_1p7.h5
     - proseco_agasc_1p7.h5
     - agasc_supplement.h5
 
