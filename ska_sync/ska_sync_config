@@ -28,7 +28,6 @@ file_sync:
     - .
 
   cmd_states:
-    - cmd_states.h5
     - cmd_states.db3
 
   # AGASC star catalog data.  Note that this is about a gigabyte.
