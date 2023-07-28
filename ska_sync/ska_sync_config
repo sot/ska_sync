@@ -59,3 +59,6 @@ file_sync:
 
   chandra_models:
     - .
+    
+  acis_tables:
+    - .
