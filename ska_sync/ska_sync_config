@@ -17,8 +17,6 @@ host: kady.cfa.harvard.edu
 ################################################################################
 file_sync:
   kadi:
-    - cmds.h5
-    - cmds.pkl
     - cmds2.h5
     - cmds2.pkl
     - events3.db3
@@ -26,9 +24,6 @@ file_sync:
   # Telemetry database, assuming fewer than 99 versions total
   Ska.tdb:
     - .
-
-  cmd_states:
-    - cmd_states.db3
 
   # AGASC star catalog data.  Note that this is about a gigabyte.
   agasc:  # ~2 Gb
