@@ -19,6 +19,8 @@ file_sync:
   kadi:
     - cmds2.h5
     - cmds2.pkl
+    - cmds3.h5
+    - cmds3.pkl
     - events3.db3
 
   # Telemetry database, assuming fewer than 99 versions total
